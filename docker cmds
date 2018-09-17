@@ -1,0 +1,44 @@
+
+#https://hub.docker.com/r/openresty/openresty/#docker-entrypoint
+
+docker stop $(docker ps -aq);
+docker rm $(docker ps -aq);
+
+docker run \
+  -it \
+  --name devtest \
+  -v ~/Projects/webservertests/openresty/config/nginx.conf:/usr/local/openresty/nginx/conf/nginx.conf:ro\
+  -v ~/Projects/webservertests/openresty/html:/usr/share/nginx/html\
+  -v ~/Projects/webservertests/openresty/config/.htpasswd:/etc/nginx/conf.d/.htpasswd:ro\
+  -p 5000:80 \
+  openresty/openresty:alpine-fat
+
+docker ps
+
+docker exec -it devtest nginx -s reload
+
+docker exec -it <container name> /bin/bash
+
+htpasswd -nb username pass >> .htaccess
+u/p admin and password
+
+docker exec -it devtest service nginx restart
+
+docker exec -it devtest /bin/bash
+/etc/nginx
+
+____
+
+docker stop $(docker ps -aq);
+docker rm $(docker ps -aq);
+
+docker run\
+  -it \
+  --name devtest \
+  -v ~/Projects/webservertests/openresty/config/nginx.conf:/usr/local/openresty/nginx/conf/nginx.conf:ro\
+  -v ~/Projects/webservertests/openresty/html:/usr/share/nginx/html\
+  -v ~/Projects/webservertests/openresty/config/.htpasswd:/etc/nginx/conf.d/.htpasswd:ro\
+  -p 5000:80 \
+  openresty/openresty:alpine-fat
+
+docker ps
